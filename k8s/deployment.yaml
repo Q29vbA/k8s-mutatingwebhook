@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-webhook
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-webhook
+  template:
+    metadata:
+      labels:
+        app: my-webhook
+    spec:
+      containers:
+        - name: my-webhook
+          image: my-webhook:v1 # build from main folder Dockerfile
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: certs
+              mountPath: /certs
+              readOnly: true
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+              scheme: HTTPS
+      volumes:
+        - name: certs
+          secret:
+            secretName: my-webhook-certs

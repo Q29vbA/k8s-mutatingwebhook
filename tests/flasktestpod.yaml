@@ -1,0 +1,17 @@
+# simple flask app to test the mutating webhook manually
+# test_webhook.py tests the webhoow automatically
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: flask-test
+  name: flask-test
+  namespace: default
+spec:
+  containers:
+  - image: app:v1 # build from test-simple-flask/Dockerfile
+    imagePullPolicy: Never
+    name: flask-test
+    resources:
+      requests:
+        cpu: 700m # play with values to test webhook behavior
