@@ -1,6 +1,6 @@
 # Mutating Admission Webhook
 
-Part of a small interview exercise I had. Inspired by [Kristijan Mitevski awesome blog post](https://kmitevski.com/kubernetes-mutating-webhook-with-python-and-fastapi/)!
+Inspired by [Kristijan Mitevski awesome blog post](https://kmitevski.com/kubernetes-mutating-webhook-with-python-and-fastapi/)!
 
 A Kubernetes mutating admission webhook that automatically injects a `500m` CPU request into any pod container that doesn't already have one. Built with FastAPI.
 
